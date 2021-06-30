@@ -2,7 +2,7 @@ const mongoose = require("mongoose");
 
 exports.connectionBD = function (){
     // Conexão com BD
-    mongoose.connect("mongodb+srv://LPIII:n3lpiii@n3.dfufy.mongodb.net/myFirstDatabase?retryWrites=true&w=majority");
+    mongoose.connect("mongodb+srv://LPIII:n3lpiii@n3.dfufy.mongodb.net/N3?retryWrites=true&w=majority");
     mongoose.connection.on("connected", function () {
     console.log("Connected to Database");
     });

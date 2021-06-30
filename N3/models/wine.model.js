@@ -53,6 +53,6 @@ const WineSchema = new Schema({
         },
 });
 
-const Wine = mongoose.model("Wine", WineSchema);
+const Wine = mongoose.model("Wines", WineSchema);
 
 module.exports = Wine;
