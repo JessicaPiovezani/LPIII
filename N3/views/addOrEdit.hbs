@@ -1,0 +1,65 @@
+    <h3>{{viewTitle}}</h3>
+
+    <form action="/" method="POST" autocomplete="off">
+        <input type="hidden" name="_id" value="{{wine._id}}">
+        <div class="form-group">
+            <label>Fixed Acidity</label>
+            <input type="number" name="fixedAcidity" 
+                value="{{wine.fixedAcidity}}" placeholder="Fixed Acidity">
+        </div>
+        <div class="form-group">
+            <label>Volatile Acidity</label>
+            <input type="number" name="volatileAcidity" 
+                value="{{wine.volatileAcidity}}" placeholder="Volatile Acidity">
+        </div>
+        <div class="form-group">
+            <label>Citric Acid</label>
+            <input type="number" name="citricAcid" 
+                value="{{wine.citricAcid}}" placeholder="Citric Acid">
+        </div>
+        <div class="form-group">
+            <label>Residual Sugar</label>
+            <input type="number" name="residualSugar" 
+                value="{{wine.residualSugar}}" placeholder="Residual Sugar">
+        </div>
+        <div class="form-group">
+            <label>Chlorides</label>
+            <input type="number" name="chlorides" 
+                value="{{wine.chlorides}}" placeholder="Chlorides">
+        </div>
+        <div class="form-group">
+            <label>Free Sulfur Dioxide</label>
+            <input type="number" name="freeSulfurDioxide" 
+                value="{{wine.freeSulfurDioxide}}" placeholder="Free Sulfur Dioxide">
+        </div>
+        <div class="form-group">
+            <label>Total Sulfur Dioxide</label>
+            <input type="number" name="totalSulfurDioxide" 
+                value="{{wine.totalSulfurDioxide}}" placeholder="Total Sulfur Dioxide">
+        </div>
+        <div class="form-group">
+            <label>Density</label>
+            <input type="number" name="density" 
+                value="{{wine.density}}" placeholder="Density">
+        </div>
+        <div class="form-group">
+            <label>PH</label>
+            <input type="number" name="ph" 
+                value="{{wine.ph}}" placeholder="PH">
+        </div>
+        <div class="form-group">
+            <label>Sulphates</label>
+            <input type="number" name="sulphates" 
+                value="{{wine.sulphates}}" placeholder="Sulphates">
+        </div>
+        <div class="form-group">
+            <label>Alcohol</label>
+            <input type="number" name="alcohol" 
+                value="{{wine.alcohol}}" placeholder="Alcohol">
+        </div>
+        <div class="form-group">
+            <label>Quality</label>
+            <input type="number" name="quality" 
+                value="{{wine.quality}}" placeholder="Quality">
+        </div>
+    </form>

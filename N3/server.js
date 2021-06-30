@@ -1,7 +1,7 @@
-require('.models/models/db');
+require('./models/db');
 const express = require('express');
 const path = require('path');
-const bodyparser = require('body-parser');
+const bodyParser = require('body-parser');
 const expressHandlebars = require('express-handlebars');
 
 const wineController = require('./controller/wineController');
