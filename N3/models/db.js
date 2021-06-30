@@ -1,14 +1,12 @@
 const mongoose = require("mongoose");
 
-exports.connectionBD = function (){
-    // Conexão com BD
-    mongoose.connect("mongodb+srv://LPIII:n3lpiii@n3.dfufy.mongodb.net/N3?retryWrites=true&w=majority");
-    mongoose.connection.on("connected", function () {
-    console.log("Connected to Database");
-    });
+const url = 'mongodb+srv://LPIII:1234@n3.dfufy.mongodb.net/N3?retryWrites=true&w=majority';
 
-    // Mensagem de Erro
-    mongoose.connection.on("error", (err) => {
-    console.log("Database error "+err);
-    });
-}
+mongoose.connect(url, {useNewUrlParser:true},(err)=> {
+    if(!err){ console.log("Connection succeded!")}
+    else{
+        console.log("An error occured")
+    }
+})
+
+require('./wine.model');

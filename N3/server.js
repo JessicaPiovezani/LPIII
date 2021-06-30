@@ -3,9 +3,7 @@ const express = require('express');
 const path = require('path');
 const bodyParser = require('body-parser');
 const expressHandlebars = require('express-handlebars');
-
 const wineController = require('./controller/wineController');
-const { extname } = require('path');
 
 var app = express();
 
@@ -13,7 +11,7 @@ app.use(bodyParser.urlencoded({
     extended:true
 }));
 
-app.use(bodyparser.json());
+app.use(bodyParser.json());
 
 app.set('views', path.join(__dirname, '/views'));
 
