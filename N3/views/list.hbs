@@ -1,0 +1,38 @@
+<table>
+    <thead>
+        <th>Fixed Acidity</th>
+        <th>Volatile Acidity</th>
+        <th>Citric Acid</th>
+        <th>Residual Sugar</th>
+        <th>Chlorides</th>
+        <th>Free Sulfur Dioxide</th>
+        <th>Total Sulfur Dioxide</th>
+        <th>Density</th>
+        <th>PH</th>
+        <th>Sulphates</th>
+        <th>Alcohol</th>
+        <th>Quality</th>
+    </thead>
+    <tbody>
+        {{#each list}}
+        <tr>
+            <td>{{this.fixedAcidity}}</td>
+            <td>{{this.volatileAcidity}}</td>
+            <td>{{this.citricAcid}}</td>
+            <td>{{this.residualSugar}}</td>
+            <td>{{this.chlorides}}</td>
+            <td>{{this.freeSulfurDioxide}}</td>
+            <td>{{this.totalSulfurDioxide}}</td>
+            <td>{{this.density}}</td>
+            <td>{{this.ph}}</td>
+            <td>{{this.sulphates}}</td>
+            <td>{{this.alcohol}}</td>
+            <td>{{this.quality}}</td>
+            <td>
+                <a href="/{{this.id}}">Uptade</a>
+                <a href="/delete/{{this.id}}">Delete</a>    
+            </td>
+        </tr>
+        {{/each}}
+    </tbody>
+</table>
