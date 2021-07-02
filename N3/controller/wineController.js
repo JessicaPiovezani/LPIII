@@ -21,7 +21,18 @@ router.post("/", (req,res) => {
 function insertRecord(req, res){
     var wine = new Wine();
 
-    wine.wine = req.body.wine;
+    wine.fixedAcidity = req.body.fixedAcidity;
+    wine.volatileAcidity = req.body.volatileAcidity;
+    wine.citricAcid = req.body.citricAcid;
+    wine.residualSugar = req.body.residualSugar;
+    wine.chlorides = req.body.chlorides;
+    wine.freeSulfurDioxide = req.body.freeSulfurDioxide;
+    wine.totalSulfurDioxide = req.body.totalSulfurDioxide;
+    wine.density = req.body.density;
+    wine.ph = req.body.ph;
+    wine.sulphates = req.body.sulphates;
+    wine.alcohol = req.body.alcohol;
+    wine.quality = req.body.quality;
 
     wine.save((err, doc) => {
         if(!err){

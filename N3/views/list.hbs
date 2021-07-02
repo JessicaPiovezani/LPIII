@@ -1,38 +1,50 @@
-<table>
-    <thead>
-        <th>Fixed Acidity</th>
-        <th>Volatile Acidity</th>
-        <th>Citric Acid</th>
-        <th>Residual Sugar</th>
-        <th>Chlorides</th>
-        <th>Free Sulfur Dioxide</th>
-        <th>Total Sulfur Dioxide</th>
-        <th>Density</th>
-        <th>PH</th>
-        <th>Sulphates</th>
-        <th>Alcohol</th>
-        <th>Quality</th>
-    </thead>
-    <tbody>
-        {{#each list}}
-        <tr>
-            <td>{{this.fixedAcidity}}</td>
-            <td>{{this.volatileAcidity}}</td>
-            <td>{{this.citricAcid}}</td>
-            <td>{{this.residualSugar}}</td>
-            <td>{{this.chlorides}}</td>
-            <td>{{this.freeSulfurDioxide}}</td>
-            <td>{{this.totalSulfurDioxide}}</td>
-            <td>{{this.density}}</td>
-            <td>{{this.ph}}</td>
-            <td>{{this.sulphates}}</td>
-            <td>{{this.alcohol}}</td>
-            <td>{{this.quality}}</td>
-            <td>
-                <a href="/{{this.id}}">Uptade</a>
-                <a href="/delete/{{this.id}}">Delete</a>    
-            </td>
-        </tr>
-        {{/each}}
-    </tbody>
-</table>
+<div style="background-color: #f0f8ffc2; padding: 1rem; border-radius: 1rem;">
+    <div class="row">
+        <div class="col-12" style="padding-bottom: 2rem;">
+            <h4 class="display-4">Wines List <button type="button" class="btn btn-primary"><i class="fas fa-file-download"></i></button></h4>
+        </div>
+    </div>
+    <div class="table-responsive">
+        <table class="table table-striped">
+            <thead >
+                <tr style="background-color: gainsboro;">
+                    <th>Fixed Acidity</th>
+                    <th>Volatile Acidity</th>
+                    <th>Citric Acid</th>
+                    <th>Residual Sugar</th>
+                    <th>Chlorides</th>
+                    <th>Free Sulfur Dioxide</th>
+                    <th>Total Sulfur Dioxide</th>
+                    <th>Density</th>
+                    <th>PH</th>
+                    <th>Sulphates</th>
+                    <th>Alcohol</th>
+                    <th>Quality</th>
+                    <th></th>
+                </tr>
+            </thead>
+            <tbody>
+                {{#each list}}
+                <tr>
+                    <td>{{this.fixedAcidity}}</td>
+                    <td>{{this.volatileAcidity}}</td>
+                    <td>{{this.citricAcid}}</td>
+                    <td>{{this.residualSugar}}</td>
+                    <td>{{this.chlorides}}</td>
+                    <td>{{this.freeSulfurDioxide}}</td>
+                    <td>{{this.totalSulfurDioxide}}</td>
+                    <td>{{this.density}}</td>
+                    <td>{{this.ph}}</td>
+                    <td>{{this.sulphates}}</td>
+                    <td>{{this.alcohol}}</td>
+                    <td>{{this.quality}}</td>
+                    <td>
+                        <a class="btn btn-primary" href="/{{this.id}}"><i class="fas fa-edit"></i></a>
+                        <a class="btn btn-danger" href="/delete/{{this.id}}"><i class="fas fa-trash"></i></a>    
+                    </td>
+                </tr>
+                {{/each}}
+            </tbody>
+        </table>
+    </div>
+</div>

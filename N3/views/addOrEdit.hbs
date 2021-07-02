@@ -1,69 +1,82 @@
-    <h3>{{viewTitle}}</h3>
-
+<div class="container" style="background-color: #f0f8ffc2; padding: 1rem; border-radius: 1rem;">
+    <div class="row">
+        <div class="col-12">
+            <form>
+                <div class="form-group">
+                    <label class="display-4" style="margin-right: 2rem;" for="exampleFormControlFile1">Wines Import</label>
+                    <input type="file" class="form-control-file" id="exampleFormControlFile1">
+                </div>
+            </form>
+            <p class="lead">or</p>
+            <h4 class="display-4">Wines Insert</h4>
+        </div>
+    </div>
     <form action="/" method="POST" autocomplete="off">
-        <input type="hidden" name="_id" value="{{wine._id}}">
-        <div class="form-group">
-            <label>Fixed Acidity</label>
-            <input type="number" name="fixedAcidity" 
-                value="{{wine.fixedAcidity}}" placeholder="Fixed Acidity">
+        <div class="row" style="--bs-gutter-y: 1rem;">
+            <div class="form-group col-md-6">
+                <input type="hidden" name="_id" value="{{wine._id}}">
+                <label>Fixed Acidity</label>
+                <input type="number" name="fixedAcidity" class="form-control"
+                    value="{{wine.fixedAcidity}}" placeholder="Fixed Acidity">
+            </div>
+            <div class="form-group col-md-6">
+                <label>Volatile Acidity</label>
+                <input type="number" name="volatileAcidity" class="form-control" 
+                    value="{{wine.volatileAcidity}}" placeholder="Volatile Acidity">
+            </div>
+            <div class="form-group col-md-6">
+                <label>Citric Acid</label>
+                <input type="number" name="citricAcid" class="form-control" 
+                    value="{{wine.citricAcid}}" placeholder="Citric Acid">
+            </div>
+            <div class="form-group col-md-6">
+                <label>Residual Sugar</label>
+                <input type="number" name="residualSugar" class="form-control" 
+                    value="{{wine.residualSugar}}" placeholder="Residual Sugar">
+            </div>
+            <div class="form-group col-md-6">
+                <label>Chlorides</label>
+                <input type="number" name="chlorides" class="form-control" 
+                    value="{{wine.chlorides}}" placeholder="Chlorides">
+            </div>
+            <div class="form-group col-md-6">
+                <label>Free Sulfur Dioxide</label>
+                <input type="number" name="freeSulfurDioxide" class="form-control" 
+                    value="{{wine.freeSulfurDioxide}}" placeholder="Free Sulfur Dioxide">
+            </div>
+            <div class="form-group col-md-6">
+                <label>Total Sulfur Dioxide</label>
+                <input type="number" name="totalSulfurDioxide" class="form-control" 
+                    value="{{wine.totalSulfurDioxide}}" placeholder="Total Sulfur Dioxide">
+            </div>
+            <div class="form-group col-md-6">
+                <label>Density</label>
+                <input type="number" name="density" class="form-control" 
+                    value="{{wine.density}}" placeholder="Density">
+            </div>
+            <div class="form-group col-md-6">
+                <label>PH</label>
+                <input type="number" name="ph" class="form-control" 
+                    value="{{wine.ph}}" placeholder="PH">
+            </div>
+            <div class="form-group col-md-6">
+                <label>Sulphates</label>
+                <input type="number" name="sulphates" class="form-control" 
+                    value="{{wine.sulphates}}" placeholder="Sulphates">
+            </div>
+            <div class="form-group col-md-6">
+                <label>Alcohol</label>
+                <input type="number" name="alcohol" class="form-control" 
+                    value="{{wine.alcohol}}" placeholder="Alcohol">
+            </div>
+            <div class="form-group col-md-6">
+                <label>Quality</label>
+                <input type="number" name="quality" class="form-control" 
+                    value="{{wine.quality}}" placeholder="Quality">
+            </div>
+            <div class="form-group col-md-12 text-center">
+                <button type="submit" class="btn btn-primary btn-lg btn-block">Enviar</button>
+            </div>
         </div>
-        <div class="form-group">
-            <label>Volatile Acidity</label>
-            <input type="number" name="volatileAcidity" 
-                value="{{wine.volatileAcidity}}" placeholder="Volatile Acidity">
-        </div>
-        <div class="form-group">
-            <label>Citric Acid</label>
-            <input type="number" name="citricAcid" 
-                value="{{wine.citricAcid}}" placeholder="Citric Acid">
-        </div>
-        <div class="form-group">
-            <label>Residual Sugar</label>
-            <input type="number" name="residualSugar" 
-                value="{{wine.residualSugar}}" placeholder="Residual Sugar">
-        </div>
-        <div class="form-group">
-            <label>Chlorides</label>
-            <input type="number" name="chlorides" 
-                value="{{wine.chlorides}}" placeholder="Chlorides">
-        </div>
-        <div class="form-group">
-            <label>Free Sulfur Dioxide</label>
-            <input type="number" name="freeSulfurDioxide" 
-                value="{{wine.freeSulfurDioxide}}" placeholder="Free Sulfur Dioxide">
-        </div>
-        <div class="form-group">
-            <label>Total Sulfur Dioxide</label>
-            <input type="number" name="totalSulfurDioxide" 
-                value="{{wine.totalSulfurDioxide}}" placeholder="Total Sulfur Dioxide">
-        </div>
-        <div class="form-group">
-            <label>Density</label>
-            <input type="number" name="density" 
-                value="{{wine.density}}" placeholder="Density">
-        </div>
-        <div class="form-group">
-            <label>PH</label>
-            <input type="number" name="ph" 
-                value="{{wine.ph}}" placeholder="PH">
-        </div>
-        <div class="form-group">
-            <label>Sulphates</label>
-            <input type="number" name="sulphates" 
-                value="{{wine.sulphates}}" placeholder="Sulphates">
-        </div>
-        <div class="form-group">
-            <label>Alcohol</label>
-            <input type="number" name="alcohol" 
-                value="{{wine.alcohol}}" placeholder="Alcohol">
-        </div>
-        <div class="form-group">
-            <label>Quality</label>
-            <input type="number" name="quality" 
-                value="{{wine.quality}}" placeholder="Quality">
-        </div>
-        <div class="form-group">
-            <button type="submit" class="btn btn-primary">Enviar</button>
-        </div>
-        <a href="/list" class="btn btn-success">List All</a>
     </form>
+</div>
