@@ -157,22 +157,23 @@ router.get('/list', (req,res) => {
                 list:docs
             })
         }
-    }).lean()
+    }).lean().limit(10)
 
 })
 
 router.get('/download', (req,res) => {
+    var content = "fixedAcidity,volatileAcidity,citricAcid,residualSugar,chlorides,freeSulfurDioxide,totalSulfurDioxide,density,ph,sulphates,alcohol,quality\n";
     Wine.find((err, docs) => {
-        if(!err) {
-            res.write("fixedAcidity,volatileAcidity\n");
+        if(!err) {         
             docs.forEach((doc) => {
-               res.write(doc.fixedAcidity)+","+doc.volatileAcidity+"\n";
+               content +=  doc.fixedAcidity+","+doc.volatileAcidity+","+doc.citricAcid+","+doc.residualSugar+","+doc.chlorides+","+doc.freeSulfurDioxide+","+doc.totalSulfurDioxide+","+doc.density+","+doc.ph+","+doc.sulphates+","+doc.alcohol+","+doc.quality+"\n";
             });
+            res.type("application/csv");
+            res.attachment("listWines.csv");
+            console.log("conteudo ",content);
+            res.send(content);
         }
-    }).lean()
-    res.type("application/octet-stream");
-    res.attachment("list-wines.csv");
-    
+    })
 })
 
 router.get('/delete/:id', (req,res) => {

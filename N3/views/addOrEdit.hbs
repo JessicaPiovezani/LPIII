@@ -2,12 +2,13 @@
     <div class="row">
         <div class="col-12">
             <form id="importWine" method="POST" action="/importa" enctype="multipart/form-data">
-                <div class="form-group">
+                <div class="form-group input-group">
+                    <div class="input-group-prepend">
                     <label class="display-4" style="margin-right: 2rem;" for="exampleFormControlFile1">Wines Import</label>
                     <input type="file" class="form-control-file" name="import"  id="import">
-                     <input type="hidden"  name="test"  value="teste">
+                     </div>
+                     
                     <button type="submit" >Importar</button>
-                    <div id="msg"></div>
                 </div>
             </form>
             <p class="lead">or</p>
