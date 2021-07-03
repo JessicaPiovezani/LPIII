@@ -1,16 +1,19 @@
 <div class="container" style="background-color: #f0f8ffc2; padding: 1rem; border-radius: 1rem;">
     <div class="row">
-        <div class="col-12">
+        <div class="col-4"><label class="display-4" style="margin-right: 2rem;" for="exampleFormControlFile1">Wines Import</label></div>
+        <div class="col-8" style="align-self: flex-end;">
             <form id="importWine" method="POST" action="/importa" enctype="multipart/form-data">
                 <div class="form-group input-group">
-                    <div class="input-group-prepend">
-                    <label class="display-4" style="margin-right: 2rem;" for="exampleFormControlFile1">Wines Import</label>
-                    <input type="file" class="form-control-file" name="import"  id="import">
-                     </div>
-                     
-                    <button type="submit" >Importar</button>
+                    <div class="custom-file" style="align-self: center; padding-right: 0.2rem">
+                        <input type="file" class="form-control-file" name="import"  id="import">
+                    </div>
+                    <div class="input-group-append">
+                        <button class="btn btn-outline-secondary" type="submit"><i class="fa fa-upload" aria-hidden="true"></i></button>
+                    </div>
                 </div>
             </form>
+        </div>
+        <div class="col-12">
             <p class="lead">or</p>
             <h4 class="display-4">Wines Insert</h4>
         </div>
