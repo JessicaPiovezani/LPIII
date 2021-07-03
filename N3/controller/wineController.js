@@ -22,6 +22,21 @@ router.post("/", (req,res) => {
     }
 })
 
+router.post("/importa", (req,res) => {
+    importWine(req,res);
+})
+
+function importWine(req,res) {
+    var formidable = require('formidable');
+  var fs = require('fs');
+  var form = new formidable.IncomingForm();
+  form.uploadDir = "./exports";
+    form.parse(req, function (err, fields, files) {
+      console.log(files.file);
+    });
+
+}
+
 function insertRecord(req, res){
     var wine = new Wine();
 

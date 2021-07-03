@@ -1,17 +1,20 @@
 <div class="container" style="background-color: #f0f8ffc2; padding: 1rem; border-radius: 1rem;">
     <div class="row">
         <div class="col-12">
-            <form>
+            <form id="importWine" method="POST" action="/importa" enctype="multipart/form-data">
                 <div class="form-group">
                     <label class="display-4" style="margin-right: 2rem;" for="exampleFormControlFile1">Wines Import</label>
-                    <input type="file" class="form-control-file" id="exampleFormControlFile1">
+                    <input type="file" class="form-control-file" name="import"  id="import">
+                     <input type="hidden"  name="test"  value="teste">
+                    <button type="submit" >Importar</button>
+                    <div id="msg"></div>
                 </div>
             </form>
             <p class="lead">or</p>
             <h4 class="display-4">Wines Insert</h4>
         </div>
     </div>
-    <form action="/" method="POST" autocomplete="off">
+    <form action="#" method="POST" autocomplete="off" >
         <div class="row" style="--bs-gutter-y: 1rem;">
             <div class="form-group col-md-6">
                 <input type="hidden" name="_id" value="{{wine._id}}">
