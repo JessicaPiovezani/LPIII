@@ -1,6 +1,10 @@
 const express = require('express');
 const mongoose = require('mongoose');
 const Wine = mongoose.model('Wine');
+const fastcsv = require("fast-csv");
+const fs = require("fs");
+const ws = fs.createWriteStream("wineList.csv");
+
 const router = express.Router();
 
 router.get("/",(req,res) => {
@@ -43,7 +47,18 @@ function insertRecord(req, res){
                 handleValidationError(err,req.body);
                 res.render("addOrEdit", {
                     viewTitle: "Insert Wine",
-                    wine:req.body
+                    wine:req.fixedAcidity,
+                    wine:req.volatileAcidity,
+                    wine:req.citricAcid,
+                    wine:req.residualSugar,
+                    wine:req.chlorides,
+                    wine:req.freeSulfurDioxide,
+                    wine:req.totalSulfurDioxide,
+                    wine:req.density,
+                    wine:req.ph,
+                    wine:req.sulphates,
+                    wine:req.alcohol,
+                    wine:req.quality
                 });
             }
         }
@@ -64,7 +79,18 @@ function updateRecord(req, res){
                     handleValidationError(err,req.body);
                     res.render("addOrEdit", {
                         viewTitle: 'Update Wine',
-                        wine:req.body
+                        fixedAcidity:req.fixedAcidity,
+                        volatileAcidity:req.volatileAcidity,
+                        citricAcid:req.citricAcid,
+                        residualSugar:req.residualSugar,
+                        chlorides:req.chlorides,
+                        freeSulfurDioxide:req.freeSulfurDioxide,
+                        totalSulfurDioxide:req.totalSulfurDioxide,
+                        density:req.density,
+                        ph:req.ph,
+                        sulphates:req.sulphates,
+                        alcohol:req.alcohol,
+                        quality:req.quality
                     });
                 }
                 else{
@@ -82,14 +108,32 @@ router.get('/list', (req,res) => {
                 list:docs
             })
         }
-    })
+    }).lean()
 
+})
+
+router.get('/download', (req,res) => {
+    Wine.find({}).lean((err, docs) => {
+        if (!err) {
+            console.log(docs);
+            fastcsv
+            .write(docs, {headers: true})
+            .on("finish", function() {
+                console.log("Write to wineList.csv successfully!")
+            })
+            .pipe(ws);
+            res.redirect('list')
+        }
+        else {
+            console.log("Deu erro", err)
+        }
+    })
 })
 
 router.get('/delete/:id', (req,res) => {
     Wine.findByIdAndRemove(req.params.id, (err, docs) => {
         if(!err) {
-            res.render("/list");
+            res.render("list");
         }
         else{
             console.log("An error occured during the delete process" + err)
