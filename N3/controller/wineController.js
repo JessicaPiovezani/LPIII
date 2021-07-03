@@ -26,15 +26,49 @@ router.post("/importa", (req,res) => {
     importWine(req,res);
 })
 
+
+
 function importWine(req,res) {
+    var wine = new Wine();
     var formidable = require('formidable');
   var fs = require('fs');
   var form = new formidable.IncomingForm();
-  form.uploadDir = "./exports";
+  //form.uploadDir = "./exports";
     form.parse(req, function (err, fields, files) {
-      console.log(files.file);
+          
+        console.log(files.import.path)
+        var content = fs.readFileSync(files.import.path).toString();
+        var lines = content.split(/\r?\n/);
+        var l = 0;
+        lines.forEach((line) => {
+            l++;
+            if(l>1){
+                var wine = new Wine();
+                var campos = line.split(",");
+                
+                wine.fixedAcidity = campos[0];
+                wine.volatileAcidity = campos[1];
+                wine.citricAcid = campos[2];
+                wine.residualSugar = campos[3];
+                wine.chlorides = campos[4];
+                wine.freeSulfurDioxide = campos[5];
+                wine.totalSulfurDioxide = campos[6];
+                wine.density = campos[7];
+                wine.ph = campos[8];
+                wine.sulphates = campos[9];
+                wine.alcohol = campos[10];
+                wine.quality = campos[11];
+                //inserir no banco de dados
+                wine.save(function(err, doc) {
+                    if (err) return console.error(err);
+                    console.log("Document inserted succussfully!");
+                });
+            }
+        });
+        res.end();
+       
     });
-
+    res.redirect("list")
 }
 
 function insertRecord(req, res){
@@ -128,21 +162,17 @@ router.get('/list', (req,res) => {
 })
 
 router.get('/download', (req,res) => {
-    Wine.find({}).lean((err, docs) => {
-        if (!err) {
-            console.log(docs);
-            fastcsv
-            .write(docs, {headers: true})
-            .on("finish", function() {
-                console.log("Write to wineList.csv successfully!")
-            })
-            .pipe(ws);
-            res.redirect('list')
+    Wine.find((err, docs) => {
+        if(!err) {
+            res.write("fixedAcidity,volatileAcidity\n");
+            docs.forEach((doc) => {
+               res.write(doc.fixedAcidity)+","+doc.volatileAcidity+"\n";
+            });
         }
-        else {
-            console.log("Deu erro", err)
-        }
-    })
+    }).lean()
+    res.type("application/octet-stream");
+    res.attachment("list-wines.csv");
+    
 })
 
 router.get('/delete/:id', (req,res) => {
