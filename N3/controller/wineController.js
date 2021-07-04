@@ -53,12 +53,11 @@ router.get('/download', (req,res) => {
 })
 
 router.get('/delete/:id', (req,res) => {
-    Wine.findByIdAndDelete(req.params.id, (err, docs) => {
+    Wine.findByIdAndDelete(req.params._id, (err, docs) => {
         if(!err) {
             res.render("addOrEdit");
         }
         else{
-            res.render("addOrEdit");
             console.log("An error occured during the delete process" + err)
         }
     })
