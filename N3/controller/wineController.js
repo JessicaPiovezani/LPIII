@@ -22,8 +22,46 @@ router.post("/", (req,res) => {
     }
 })
 
-router.post("/importa", (req,res) => {
+router.post("/import", (req,res) => {
     importWine(req,res);
+})
+
+router.get('/list', (req,res) => {
+    Wine.find((err, docs) => {
+        if(!err) {
+            res.render("list", {
+                list:docs
+            })
+        }
+    }).lean().limit(10)
+
+})
+
+router.get('/download', (req,res) => {
+    var content = "fixedAcidity,volatileAcidity,citricAcid,residualSugar,chlorides,freeSulfurDioxide,totalSulfurDioxide,density,ph,sulphates,alcohol,quality\n";
+    Wine.find((err, docs) => {
+        if(!err) {         
+            docs.forEach((doc) => {
+               content +=  doc.fixedAcidity+","+doc.volatileAcidity+","+doc.citricAcid+","+doc.residualSugar+","+doc.chlorides+","+doc.freeSulfurDioxide+","+doc.totalSulfurDioxide+","+doc.density+","+doc.ph+","+doc.sulphates+","+doc.alcohol+","+doc.quality+"\n";
+            });
+            res.type("application/csv");
+            res.attachment("listWines.csv");
+            console.log("conteudo ",content);
+            res.send(content);
+        }
+    })
+})
+
+router.get('/delete/:id', (req,res) => {
+    Wine.findByIdAndDelete(req.params.id, (err, docs) => {
+        if(!err) {
+            res.render("addOrEdit");
+        }
+        else{
+            res.render("addOrEdit");
+            console.log("An error occured during the delete process" + err)
+        }
+    })
 })
 
 
@@ -31,9 +69,9 @@ router.post("/importa", (req,res) => {
 function importWine(req,res) {
     var wine = new Wine();
     var formidable = require('formidable');
-  var fs = require('fs');
-  var form = new formidable.IncomingForm();
-  //form.uploadDir = "./exports";
+    var fs = require('fs');
+    var form = new formidable.IncomingForm();
+    //form.uploadDir = "./exports";
     form.parse(req, function (err, fields, files) {
           
         console.log(files.import.path)
@@ -116,7 +154,7 @@ function insertRecord(req, res){
 
 function updateRecord(req, res){
     Wine.findByIdAndUpdate(
-        {_id:req.body._id,}, 
+        {id:req.body.id,}, 
         req.body, 
         {new:true},
         (err, doc) => {
@@ -150,41 +188,6 @@ function updateRecord(req, res){
     )
 }
 
-router.get('/list', (req,res) => {
-    Wine.find((err, docs) => {
-        if(!err) {
-            res.render("list", {
-                list:docs
-            })
-        }
-    }).lean().limit(10)
 
-})
-
-router.get('/download', (req,res) => {
-    var content = "fixedAcidity,volatileAcidity,citricAcid,residualSugar,chlorides,freeSulfurDioxide,totalSulfurDioxide,density,ph,sulphates,alcohol,quality\n";
-    Wine.find((err, docs) => {
-        if(!err) {         
-            docs.forEach((doc) => {
-               content +=  doc.fixedAcidity+","+doc.volatileAcidity+","+doc.citricAcid+","+doc.residualSugar+","+doc.chlorides+","+doc.freeSulfurDioxide+","+doc.totalSulfurDioxide+","+doc.density+","+doc.ph+","+doc.sulphates+","+doc.alcohol+","+doc.quality+"\n";
-            });
-            res.type("application/csv");
-            res.attachment("listWines.csv");
-            console.log("conteudo ",content);
-            res.send(content);
-        }
-    })
-})
-
-router.get('/delete/:id', (req,res) => {
-    Wine.findByIdAndRemove(req.params.id, (err, docs) => {
-        if(!err) {
-            res.render("list");
-        }
-        else{
-            console.log("An error occured during the delete process" + err)
-        }
-    })
-})
 
 module.exports = router;
